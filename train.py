@@ -6,7 +6,6 @@ from PIL import Image
 from torch.utils.data import Dataset, DataLoader
 import json 
 
-# Load CLIP model
 device = "cuda" if torch.cuda.is_available() else "cpu"
 model, preprocess = clip.load("ViT-B/32", device=device)
 
@@ -51,13 +50,12 @@ test_dataset = VideoDataset("test_data.json", preprocess)
 train_loader = DataLoader(train_dataset, batch_size=4, shuffle=True)
 test_loader = DataLoader(test_dataset, batch_size=4, shuffle=False)
 
-# Define simple classifier
-class VideoClassifier(torch.nn.Module):
+class VideoClassifier(torch.nn.Module): # Simple model with 3 linear layer
     def __init__(self):
         super().__init__()
-        self.fc = torch.nn.Linear(512, 256)  # Binary classification
-        self.fc2 = torch.nn.Linear(256, 128)  # Binary classification
-        self.fc3 = torch.nn.Linear(128, 2)  # Binary classification
+        self.fc = torch.nn.Linear(512, 256)  
+        self.fc2 = torch.nn.Linear(256, 128)  
+        self.fc3 = torch.nn.Linear(128, 2)  
 
     def forward(self, x):
         o1 = self.fc(x) 
