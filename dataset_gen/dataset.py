@@ -5,8 +5,8 @@ import random
 
 
 # Define paths, these paths are ignored in git repository
-make_folder = "make/"
-miss_folder = "miss/"
+make_folder = "../make/"
+miss_folder = "../miss/"
 
 dataset = {}
 for video in os.listdir(make_folder):

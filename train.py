@@ -44,8 +44,8 @@ class VideoDataset(Dataset):
         return frames, torch.tensor(label, dtype=torch.long)
 
 # Load data
-train_dataset = VideoDataset("train_data.json", preprocess)
-test_dataset = VideoDataset("test_data.json", preprocess)
+train_dataset = VideoDataset("dataset_gen/train_data.json", preprocess)
+test_dataset = VideoDataset("dataset_gen/test_data.json", preprocess)
 
 train_loader = DataLoader(train_dataset, batch_size=4, shuffle=True)
 test_loader = DataLoader(test_dataset, batch_size=4, shuffle=False)
